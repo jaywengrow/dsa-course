@@ -1,3 +1,6 @@
+# See: https://www.geeksforgeeks.org/python-convert-nested-dictionary-into-flattened-dictionary/
+
+
 def flatten(input, result, parent_key=""):
     if parent_key != "":
         parent_key += "."

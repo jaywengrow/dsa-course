@@ -1,3 +1,6 @@
+# https://leetcode.com/problems/subsets/description/
+
+
 def subsets(array):
     if len(array) == 0:
         return [[]]
