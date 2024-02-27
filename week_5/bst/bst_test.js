@@ -1,10 +1,11 @@
 import TreeNode from './bst_node.js';
 import search from './bst_search.js';
 import insert from './bst_insert.js';
-import traverse from './bst_traversal.js';
+import dfsTraverse from './bst_dfs_traversal.js';
 import invert from './bst_invert.js';
 import sameTree from './same_tree.js';
 import validate from './validate_bst.js';
+import bfsTraverse from './bst_bfs_traversal.js';
 
 
 
@@ -54,7 +55,7 @@ assertEqual(search(40, root).value, 40);
 
 
 // Traversal
-console.log('Traversal');
+console.log('DFS Traversal');
 root = new TreeNode(5);
 insert(2, root);
 insert(7, root);
@@ -62,7 +63,21 @@ insert(1, root);
 insert(3, root);
 insert(6, root);
 insert(8, root);
-traverse(root);
+
+// Tree is: 
+//           5
+//         /   \
+//        2     7
+//       / \   / \
+//      1   3 6   8
+
+
+dfsTraverse(root);
+
+console.log()
+console.log('BFS Traversal');
+bfsTraverse(root);
+console.log()
 
 // Invert
 console.log('Invert');
@@ -74,7 +89,7 @@ insert(3, root);
 insert(6, root);
 insert(8, root);
 invert(root);
-traverse(root);
+dfsTraverse(root);
 
 // Same Tree
 console.log('Same Tree');
