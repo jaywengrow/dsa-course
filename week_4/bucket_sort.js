@@ -22,4 +22,8 @@ function bucketSort(array) {
 }
 
 console.log(bucketSort(["a", "c", "d", "b", "b", "c", "a", "d", "c", "b", "a", "d"]));
-  
+
+{"a": 3, "b": 3, "d": 4}
+
+newArray = ["a", "a", "a", "b", "b", "b"]
+2N -> O(N)

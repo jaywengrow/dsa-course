@@ -1,6 +1,7 @@
 import vertex
 import dfs_traverse
 import topological_sort
+import shortest_path
 
 
 def assert_equal(x, y):
@@ -52,6 +53,7 @@ print("DFS Traverse")
 dfs_traverse.dfs_traverse(alice, {})
 
 # Topological Sort
+print
 print("Topological Sort")
 a = vertex.Vertex("a")
 b = vertex.Vertex("b")
@@ -66,3 +68,30 @@ d.add_adjacent_vertex(e)
 e.add_adjacent_vertex(f)
 vertices = [a, b, c, d, e, f]
 print(topological_sort.topological_sort(vertices))  # d, e, a, c, f, b
+
+# Shortest Path
+print
+print("Shortest Path")
+idris = vertex.Vertex("Idris")
+talia = vertex.Vertex("Talia")
+ken = vertex.Vertex("Ken")
+marco = vertex.Vertex("Marco")
+sasha = vertex.Vertex("Sasha")
+lina = vertex.Vertex("Lina")
+kamil = vertex.Vertex("Kamil")
+idris.add_adjacent_vertex(talia)
+talia.add_adjacent_vertex(idris)
+talia.add_adjacent_vertex(ken)
+ken.add_adjacent_vertex(talia)
+ken.add_adjacent_vertex(marco)
+marco.add_adjacent_vertex(ken)
+marco.add_adjacent_vertex(sasha)
+sasha.add_adjacent_vertex(marco)
+sasha.add_adjacent_vertex(lina)
+lina.add_adjacent_vertex(sasha)
+lina.add_adjacent_vertex(kamil)
+kamil.add_adjacent_vertex(lina)
+kamil.add_adjacent_vertex(idris)
+idris.add_adjacent_vertex(kamil)
+
+assert_equal(shortest_path.shortest_path(idris, lina, {}), ["Idris", "Kamil", "Lina"])

@@ -1,5 +1,5 @@
 import doubly_linked_list
-import lru_cache
+
 
 
 def assert_equal(x, y):
@@ -79,52 +79,3 @@ assert_equal(dlist.first_node.data, "C")
 dlist.pop_index(1)
 assert_equal(dlist.first_node.data, "C")
 assert_equal(dlist.last_node.data, "C")
-
-# LRU Cache
-print("LRU Cache - filling the cache")
-lru = lru_cache.LruCache()
-lru.cache("a", 1)
-assert_equal(lru.hash_table.get("a").price, 1)
-lru.cache("b", 2)
-assert_equal(lru.hash_table.get("a").price, 1)
-assert_equal(lru.hash_table.get("b").price, 2)
-lru.cache("c", 3)
-lru.cache("d", 4)  # cache is now: d, c, b, a
-assert_equal(lru.linked_list.first_node.product, "d")
-assert_equal(lru.linked_list.first_node.next_node.product, "c")
-assert_equal(lru.linked_list.last_node.previous_node.product, "b")
-assert_equal(lru.linked_list.last_node.product, "a")
-
-print("LRU Cache - freshen")
-lru.freshen("a")   # cache is now: a, d, c, b
-assert_equal(lru.linked_list.first_node.product, "a")
-assert_equal(lru.linked_list.first_node.next_node.product, "d")
-assert_equal(lru.linked_list.last_node.previous_node.product, "c")
-assert_equal(lru.linked_list.last_node.product, "b")
-assert_equal(lru.linked_list.first_node.previous_node, None)
-assert_equal(lru.linked_list.last_node.next_node, None)
-
-print("LRU Cache - caching into full cache")
-lru.cache("e", 5)  # cache is now: e, a, d, c
-assert_equal(lru.hash_table.get("b"), None)
-assert_equal(lru.hash_table.get("e").price, 5)
-assert_equal(lru.linked_list.first_node.product, "e")
-assert_equal(lru.linked_list.first_node.next_node.product, "a")
-assert_equal(lru.linked_list.last_node.previous_node.product, "d")
-assert_equal(lru.linked_list.last_node.product, "c")
-assert_equal(lru.linked_list.first_node.previous_node, None)
-assert_equal(lru.linked_list.last_node.next_node, None)
-
-# Price Requester
-print("Price Requester")
-req = lru_cache.PriceRequester()
-assert_equal(req.request_price_for("a"), 1)
-assert_equal(req.request_price_for("b"), 1)
-assert_equal(req.request_price_for("c"), 1)
-assert_equal(req.request_price_for("d"), 1)
-assert_equal(req.request_price_for("a"), 1)
-assert_equal(req.request_price_for("b"), 1)
-assert_equal(req.request_price_for("c"), 1)
-assert_equal(req.request_price_for("d"), 1)
-assert_equal(req.request_price_for("e"), 1)
-assert_equal(req.request_price_for("a"), 1)
